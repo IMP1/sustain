@@ -10,8 +10,6 @@ onready var _timer := $Timer as Timer
 onready var _rng := RandomNumberGenerator.new()
 
 func activate(player) -> void:
-	if not _timer.is_stopped():
-		return
 	$Sprites/Berries.visible = false
 	var item_amount := _rng.randi_range(min_yield, max_yield)
 	var direction := Vector2()

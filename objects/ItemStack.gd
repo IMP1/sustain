@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name ItemStack
 
 export(Resource) var item: Resource setget _set_item
 export(int) var amount: int
