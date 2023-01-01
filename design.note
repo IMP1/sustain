@@ -1,0 +1,13 @@
+## Roadmap
+
+  - [X] Character on screen
+  - [X] Character movement
+  - [X] Objects on screen
+  - [X] Character interact with objects
+  - [ ] Character GUI
+  - [X] Controller + K/M support for multiple local players
+  - [ ] Interactables playing sounds
+  - [X] Character picking up items
+  - [ ] Character using items
+  - [ ] Hunger meter depletion
+  - [ ] Satisfying hunger need
