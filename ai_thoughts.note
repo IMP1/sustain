@@ -1,0 +1,21 @@
+https://www.reddit.com/r/gamedev/comments/2dzp8l/decisionmaking_ai_in_the_sims/
+
+https://gamedevelopment.tutsplus.com/tutorials/goal-oriented-action-planning-for-a-smarter-ai--cms-20793
+
+
+Trying to combine a Sims-based approach of NEEDS of an actor, with Goal-Orientated Action Planning, which feels quite flexible.
+
+In the former, objects advertise actions they will allow the actor to perform, and these actions will satisfy an actor's needs (although not necessarily as advertised!)
+In the latter, a global list of actions is available to the player, and they have preconditions, and effects, and a tree can be generated.
+
+
+the former is still a nice idea (with actors also able to advertise actions to themselves)
+But some calculation needs to happen regarding judging the marginal utility in selecting an action.
+
+actions still just have a cost and preconditions and effects. they just advertised by objects in the world
+but a *Goal* will need to judge which effects will have the best marginal utility for the actor.
+
+I guess it's for each actor to determine how much they value the postconditions.
+
+I also guess that *Goals* are only useful in the process of creating a plan. They don't have to exist as a thing in and of themselves.
+I guess that the *priority* aspect of GOAP is an alternative to the marginal utility bit, and would work interchangeably if priorities of goals were maleable.
