@@ -2,30 +2,26 @@ extends KinematicBody2D
 
 var _hunger: int = 0
 
-class ManageHunger extends GoapGoal:
-	func is_valid() -> bool:
-		return true
-	func priority() -> int:
-		return 1 if _actor._hunger < 75 else 2
-	func desired_state() -> Dictionary:
-		return {
-			"fed": true
-		}
-
-
+onready var _nav_agent: NavigationAgent2D = $NavigationAgent2D as NavigationAgent2D
 
 func _ready():
-	_setup_goap()
+	_nav_agent.set_target_location(position)
 
-func _setup_goap() -> void:
-	var goals := []
-	var manage_hunger := ManageHunger.new()
-	manage_hunger._actor = self
-	goals.append(manage_hunger)
-	
-	var world = null # TODO: Get world from somewhere
-	
-	var agent := GoapAgent.new()
-	agent.init(self, world, goals)
-	add_child(agent)
-	
+func move_to(pos: Vector2):
+	_nav_agent.set_target_location(pos)
+
+# TODO: Remove
+func _input(event):
+	if event is InputEventMouseButton:
+		move_to(event.position - Vector2(512, 300))
+
+func _physics_process(delta: float) -> void:
+	_process_path_movement()
+
+func _process_path_movement():
+	if _nav_agent.is_navigation_finished():
+		return
+	var target := _nav_agent.get_next_location()
+	var direction := global_position.direction_to(target)
+	var velocity := direction * _nav_agent.max_speed
+	move_and_slide(velocity)
