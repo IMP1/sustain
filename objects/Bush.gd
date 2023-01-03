@@ -9,7 +9,14 @@ export(float) var max_growth_time: float = 10.0
 onready var _timer := $Timer as Timer
 onready var _rng := RandomNumberGenerator.new()
 
+func _ready() -> void:
+	if item == null:
+		print("[WARNING] Item not set for bush %s" % self.to_string())
+
 func activate(player) -> void:
+	if item == null:
+		print("Item has not been set!")
+		return
 	$Sprites/Berries.visible = false
 	var item_amount := _rng.randi_range(min_yield, max_yield)
 	var direction := Vector2()
