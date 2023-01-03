@@ -5,3 +5,49 @@
 [node name="HUDRight" instance=ExtResource( 1 )]
 anchor_left = 0.5
 anchor_right = 1.0
+
+[node name="Face" parent="." index="0"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -104.0
+margin_right = -8.0
+
+[node name="Name" parent="." index="1"]
+margin_left = 0.0
+margin_top = 4.0
+margin_right = -96.0
+align = 2
+
+[node name="Hunger" parent="." index="2"]
+anchor_left = 0.4
+anchor_right = 1.0
+margin_left = 0.0
+margin_right = -96.0
+
+[node name="Label" parent="Hunger" index="0"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -52.0
+margin_right = 0.0
+align = 0
+
+[node name="Bar" parent="Hunger" index="1"]
+margin_left = 0.0
+margin_right = -64.0
+
+[node name="Health" parent="." index="3"]
+anchor_left = 0.4
+anchor_right = 1.0
+margin_left = 0.0
+margin_right = -96.0
+
+[node name="Label" parent="Health" index="0"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -52.0
+margin_right = 0.0
+align = 0
+
+[node name="Bar" parent="Health" index="1"]
+margin_left = 0.0
+margin_right = -64.0

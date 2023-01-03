@@ -6,8 +6,24 @@
   - [X] Character interact with objects
   - [ ] Character GUI
   - [X] Controller + K/M support for multiple local players
-  - [ ] Interactables playing sounds
+  - [X] Interactables playing sounds
   - [X] Character picking up items
   - [ ] Character using items
   - [ ] Hunger meter depletion
   - [ ] Satisfying hunger need
+  - [ ] Bunnies running around
+  - [ ] Bunny AI
+    - [ ] Idling
+    - [ ] Searching for food when hungry
+    - [ ] Fleeing from threats
+  - [ ] Trapping/killing bunnies in a snare
+  - [ ] Wolves running around
+  - [ ] Wolf AI
+    - [ ] Idling
+    - [ ] Searching for food when hungry
+    - [ ] Hunting rabbits
+    - [ ] Killing + eating rabbits
+    - [ ] Stealing food from storage
+    - [ ] Fleeing from threats
+    - [ ] Attacking back when threatened
+  - [ ] Killing wolves?
