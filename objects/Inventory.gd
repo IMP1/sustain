@@ -4,11 +4,9 @@ class_name Inventory
 var _items := {} 
 
 signal item_added(item, amount)
-signal remove_item(item, amount)
+signal item_removed(item, amount)
 
 func add_item(item: Resource, amount: int = 1) -> void:
-	print("Adding %d of %s" % [amount, item.name])
-	print("Already found one" if _item_ref(item) != null else "First one")
 	if not has_item(item):
 		_items[item] = 0
 	var key := _item_ref(item)

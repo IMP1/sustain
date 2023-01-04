@@ -15,7 +15,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		move_to(event.position - Vector2(512, 300))
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_process_path_movement()
 
 func _process_path_movement():

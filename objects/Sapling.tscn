@@ -24,6 +24,7 @@ border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
 
 [node name="Sapling" instance=ExtResource( 1 )]
+collision_layer = 66
 script = ExtResource( 3 )
 item = null
 amount = 6

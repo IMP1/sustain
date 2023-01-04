@@ -35,6 +35,8 @@ func _add_player(input_device: int) -> void:
 	hunger_bar._object = player
 	hunger_bar.property = "_hunger"
 	player.connect("hunger_changed", hunger_bar, "refresh")
+	player.inventory.connect("item_added", self, "_refresh_player_inventory", [player, hud])
+	player.inventory.connect("item_removed", self, "_refresh_player_inventory", [player, hud])
 
 func _shift_player_character(direction: int, player) -> void:
 	print(player)
@@ -49,3 +51,6 @@ func _input(event: InputEvent) -> void:
 
 func _player_starved(player):
 	print("GAME OVER")
+
+func _refresh_player_inventory(_item, _amount, player, hud):
+	hud.player_inventory = player.inventory._items

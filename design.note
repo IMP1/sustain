@@ -4,12 +4,12 @@
   - [X] Character movement
   - [X] Objects on screen
   - [X] Character interact with objects
-  - [ ] Character GUI
+  - [X] Character GUI
   - [X] Controller + K/M support for multiple local players
   - [X] Interactables playing sounds
   - [X] Character picking up items
   - [X] Character using items
-  - [ ] Hunger meter depletion
+  - [X] Hunger meter depletion
   - [X] Satisfying hunger need
   - [X] Bunnies running around
   - [ ] Bunny AI

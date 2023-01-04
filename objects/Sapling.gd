@@ -25,13 +25,13 @@ func _stop_activation() -> void:
 	_tween.stop_all()
 	_audio.stop()
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if not _active:
 		return
 	if _last_active_player.is_action_just_released("interact"):
 		_stop_activation()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not _active:
 		return
 	if not self in _last_active_player._interaction_area.get_overlapping_bodies():
