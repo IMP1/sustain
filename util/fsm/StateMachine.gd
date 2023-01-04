@@ -1,6 +1,8 @@
 extends Node
 class_name StateMachine
 
+# https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine/
+
 export(NodePath) var initial_state: NodePath
 
 onready var _state: State = get_node(initial_state) as State
