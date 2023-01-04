@@ -1,6 +1,7 @@
 extends Node2D
 
 const PLAYER = preload("res://objects/Player.tscn")
+const ITEM_STACK = preload("res://objects/ItemStack.tscn")
 const AVAILABLE_CHARACTERS = ["Pink", "Blue", "White"]
 
 var _used_devices = []
@@ -8,6 +9,7 @@ var _used_devices = []
 onready var _players: Node2D = $Objects/Players as Node2D
 onready var _camera: MultiplayerCamera2D = $Camera as MultiplayerCamera2D
 onready var _gui_layer: CanvasLayer = $HUDs as CanvasLayer
+onready var _object_list: Node2D = $Objects/Objects as Node2D
 
 func _add_player(input_device: int) -> void:
 	_used_devices.append(input_device)
@@ -37,6 +39,7 @@ func _add_player(input_device: int) -> void:
 	player.connect("hunger_changed", hunger_bar, "refresh")
 	player.inventory.connect("item_added", self, "_refresh_player_inventory", [player, hud])
 	player.inventory.connect("item_removed", self, "_refresh_player_inventory", [player, hud])
+	player.connect("drop_item", self, "_add_item_stack")
 
 func _shift_player_character(direction: int, player) -> void:
 	print(player)
@@ -50,7 +53,19 @@ func _input(event: InputEvent) -> void:
 			_add_player(event.device + 1)
 
 func _player_starved(player):
-	print("GAME OVER")
+	pass
 
 func _refresh_player_inventory(_item, _amount, player, hud):
 	hud.player_inventory = player.inventory._items
+
+func _add_item_stack(item: Item, amount: int, pos: Vector2, height: Vector2, destination: Vector2) -> ItemStack:
+	print("adding item stack.")
+	var stack: ItemStack = ITEM_STACK.instance() as ItemStack
+	_object_list.add_child(stack)
+	stack.position = pos
+	stack.item = item
+	stack.amount = amount
+	stack.height = height
+	stack.destination = destination
+	stack.pop()
+	return stack

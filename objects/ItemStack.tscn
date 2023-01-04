@@ -14,4 +14,8 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
+[node name="Label" type="Label" parent="Sprite"]
+margin_right = 40.0
+margin_bottom = 14.0
+
 [node name="Tween" type="Tween" parent="."]

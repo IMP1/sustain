@@ -31,3 +31,4 @@ script = ExtResource( 1 )
 name = "Berry"
 icon = SubResource( 1 )
 effects = [ SubResource( 5 ), SubResource( 3 ), SubResource( 4 ) ]
+usable = true

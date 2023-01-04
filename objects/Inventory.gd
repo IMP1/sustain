@@ -20,9 +20,9 @@ func remove_item(item: Resource, amount: int = 1) -> bool:
 		return false
 	var key := _item_ref(item)
 	_items[key] -= amount
-	emit_signal("item_removed", key, amount)
-	if _items[key] == 0:
+	if _items[key] <= 0:
 		_items.erase(key)
+	emit_signal("item_removed", key, amount)
 	return true
 
 func has_item(item: Resource) -> bool:

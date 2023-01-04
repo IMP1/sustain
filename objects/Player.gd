@@ -3,6 +3,7 @@ extends KinematicBody2D
 signal shift_character(direction)
 signal hunger_changed()
 signal starved()
+signal drop_item(item, amount)
 
 export(String) var player_name: String = "Player 1"
 export(int) var device_id: int = 0
@@ -46,6 +47,8 @@ func _input(event):
 			_refresh_inventory_gui()
 		if any_items and _is_event_action_pressed(event, "interact"):
 			_use_item()
+		if any_items and _is_event_action_pressed(event, "drop"):
+			_drop_item()
 	else:
 		if _is_event_action_pressed(event, "shift_char_down"):
 			emit_signal("shift_character", -1)
@@ -89,10 +92,24 @@ func _use_item() -> void:
 	# QUESTION: Should inventory close on use?
 	_refresh_inventory_gui()
 
+func _drop_item() -> void:
+	if inventory.item_types().empty():
+		return
+	var item: Item = inventory.item_types()[_current_item_index]
+	var amount: int = 1
+	if is_action_pressed("toggle_drop_all"):
+		amount = inventory.item_count(item)
+	var height := Vector2(0, 10) # TODO: Use the direction facing
+	var destination: Vector2 = position + Vector2(rand_range(-8, 8), 24) # TODO: Use the direction facing
+	emit_signal("drop_item", item, amount, position, height, destination)
+	inventory.remove_item(item, amount)
+	_refresh_inventory_gui()
+
 func _interact() -> void:
 	var interactables := _interaction_area.get_overlapping_bodies()
 	if interactables.size() == 1:
 		interactables[0].activate(self)
+		return
 	var all_are_item_stacks := true
 	for obj in interactables:
 		if not obj is ItemStack:
@@ -120,12 +137,14 @@ func _item_added(item: Resource, amount: int) -> void:
 
 func _refresh_inventory_gui() -> void:
 	var item_types := inventory.item_types()
+	var item: Item
+	var amount: int
 	if item_types.empty():
-		_current_item.item = null
-		_current_item.amount = 0
-		return
-	var item: Item = item_types[_current_item_index]
-	var amount: int = inventory.item_count(item)
+		item = null
+		amount = 0
+	else:
+		item = item_types[_current_item_index]
+		amount = inventory.item_count(item)
 	_current_item.item = item
 	_current_item.amount = amount
 	_current_item.refresh()

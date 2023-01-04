@@ -3,7 +3,7 @@ class_name ItemStack
 
 export(Resource) var item: Resource setget _set_item
 export(int) var amount: int
-export(Vector2) var source: Vector2
+export(Vector2) var height: Vector2
 export(Vector2) var destination: Vector2
 
 var _is_ready = false
@@ -20,8 +20,9 @@ func _ready():
 	_is_ready = true
 
 func pop():
+	$Sprite/Label.text = str(amount)
 	var duration := 0.1
-	_tween.interpolate_property(self, "position", position, position - Vector2(0, 16), duration)
+	_tween.interpolate_property(self, "position", position, position - height, duration)
 	_tween.interpolate_property(self, "z_index", 0, 2, duration)
 	_tween.start()
 	yield(_tween, "tween_all_completed")

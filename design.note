@@ -12,6 +12,10 @@
   - [X] Hunger meter depletion
   - [X] Satisfying hunger need
   - [X] Bunnies running around
+  - [X] Dropping items
+  - [X] Trees to give logs
+  - [ ] Building things
+  - [ ] Storing items?
   - [ ] Bunny AI
     - [ ] Idling
     - [ ] Searching for food when hungry
