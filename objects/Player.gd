@@ -103,6 +103,8 @@ func _drop_item() -> void:
 	var destination: Vector2 = position + Vector2(rand_range(-8, 8), 24) # TODO: Use the direction facing
 	emit_signal("drop_item", item, amount, position, height, destination)
 	inventory.remove_item(item, amount)
+	if _current_item_index > 0:
+		_current_item_index -= 1
 	_refresh_inventory_gui()
 
 func _interact() -> void:
