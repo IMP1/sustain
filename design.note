@@ -8,10 +8,10 @@
   - [X] Controller + K/M support for multiple local players
   - [X] Interactables playing sounds
   - [X] Character picking up items
-  - [ ] Character using items
+  - [X] Character using items
   - [ ] Hunger meter depletion
-  - [ ] Satisfying hunger need
-  - [ ] Bunnies running around
+  - [X] Satisfying hunger need
+  - [X] Bunnies running around
   - [ ] Bunny AI
     - [ ] Idling
     - [ ] Searching for food when hungry

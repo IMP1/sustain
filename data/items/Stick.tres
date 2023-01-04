@@ -11,3 +11,4 @@ region = Rect2( 48, 0, 24, 24 )
 script = ExtResource( 1 )
 name = "Stick"
 icon = SubResource( 1 )
+effects = [  ]
