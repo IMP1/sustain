@@ -21,16 +21,10 @@ func enable() -> void:
 	collision_layer += 64
 	_enabled = true	
 
-func pop_item_stack(item: Resource, amount: int, global_pos: Vector2, direction: Vector2):
-	# TODO: Play sounds
-	var item_stack = ITEM_STACK.instance()
-	_game_scene.get_node("Objects/Objects").add_child(item_stack)
-	item_stack.source = global_pos + Vector2(0, 10)
-	item_stack.destination = global_pos + Vector2(rand_range(-8, 8), 32)
-	item_stack.global_position = item_stack.source
-	item_stack.item = item
-	item_stack.amount = amount
-	item_stack.pop()
+func pop_item_stack(item: Resource, amount: int, pos: Vector2, direction: Vector2):
+	var height := Vector2(0, 10)
+	var destination := pos + Vector2(rand_range(-8, 8), 32)
+	var item_stack: ItemStack = _game_scene._add_item_stack(item, amount, pos, height, destination)
 
 func play_sound(stream: AudioStream, pos: Vector2):
 	var audio: AudioStreamPlayer2D = AudioStreamPlayer2D.new()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sawing-wood.ogg-19d778607a835b574ed18721550a73ce.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sounds/sawing-wood.ogg"
+dest_files=[ "res://.import/sawing-wood.ogg-19d778607a835b574ed18721550a73ce.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
