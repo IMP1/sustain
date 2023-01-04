@@ -19,7 +19,7 @@ duration = 3.0
 [sub_resource type="Resource" id=4]
 script = ExtResource( 4 )
 name = ""
-factor = 1.3
+rate_offset = 0.0
 duration = 1.0
 
 [sub_resource type="AtlasTexture" id=1]

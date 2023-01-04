@@ -16,6 +16,7 @@ func _add_player(input_device: int) -> void:
 	player.device_id = input_device
 	player.position += Vector2(50, 50)
 	player.connect("shift_character", self, "_shift_player_character", [player])
+	player.connect("starved", self, "_player_starved", [player])
 	_camera.add_player(player.get_path())
 	var current_player_number: int = _players.get_child_count()
 	var hud_path: String = ""
@@ -30,6 +31,10 @@ func _add_player(input_device: int) -> void:
 			hud_path = "HUDBottomRight.tscn"
 	var hud: Control = load("res://gui/" + hud_path).instance() as Control
 	_gui_layer.add_child(hud)
+	var hunger_bar = hud.get_node("Hunger/Bar")
+	hunger_bar._object = player
+	hunger_bar.property = "_hunger"
+	player.connect("hunger_changed", hunger_bar, "refresh")
 
 func _shift_player_character(direction: int, player) -> void:
 	print(player)
@@ -41,3 +46,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton:
 		if not (event.device + 1) in _used_devices:
 			_add_player(event.device + 1)
+
+func _player_starved(player):
+	print("GAME OVER")

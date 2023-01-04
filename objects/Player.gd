@@ -1,15 +1,18 @@
 extends KinematicBody2D
 
 signal shift_character(direction)
+signal hunger_changed()
+signal starved()
 
 export(String) var player_name: String = "Player 1"
 export(int) var device_id: int = 0
 
+export(float) var hunger_rate: float = 5 # Hunger points increase per second 
+
 const MOVEMENT_IMPULSE = 100
 const ITEM_SCENE = preload("res://gui/InventoryItem.tscn")
 
-var _hunger: float = 100
-var _hunger_rate: float = 5 # Hunger points increase per second 
+var _hunger: float = 0
 
 var _velocity: Vector2 = Vector2.ZERO
 var _current_item_index: int = 0
@@ -17,7 +20,6 @@ var _current_item_index: int = 0
 onready var inventory: Inventory = $Inventory as Inventory
 onready var _interaction_area: Area2D = $InteractionReach as Area2D
 onready var _inventory_gui: Control = $InventoryGui as Control
-onready var _hunger_tween: Tween = $HungerTween as Tween
 
 func is_action_pressed(action_name: String) -> bool:
 	return Input.is_action_pressed(action_name + "_" + str(device_id))
@@ -62,11 +64,18 @@ func _handle_movement(delta: float) -> void:
 	_velocity = _velocity.normalized() * MOVEMENT_IMPULSE
 	var collision := move_and_slide(_velocity, Vector2.ZERO)
 
+func _process_hunger(delta: float) -> void:
+	_hunger += hunger_rate * delta
+	emit_signal("hunger_changed")
+	# TODO: If hunger too high, then lose?
+	if _hunger > 100:
+		print("%s IS TOO HUNGRY - YOU LOSE" % player_name)
+
 func _process(delta: float) -> void:
 	if _inventory_gui.visible:
 		return
 	_handle_movement(delta)
-	# TODO: Get hungry
+	_process_hunger(delta)
 
 func _ready() -> void:
 	_inventory_gui.visible = false
@@ -125,4 +134,5 @@ func _refresh_inventory_gui() -> void:
 func feed(amount: float) -> void:
 	_hunger -= amount
 	_hunger = 0 if _hunger < 0 else _hunger
+	emit_signal("hunger_changed")
 	# TODO: Refresh hunger bar

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://util/tracking_controls/TrackingTextureRect.gd" type="Script" id=1]
+
+[node name="TrackingTextureRect" type="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
