@@ -10,7 +10,6 @@ export(int) var device_id: int = 0
 
 export(float) var hunger_rate: float = 5 # Hunger points increase per second 
 
-const BUILD_CATEGORIES = ["Survival", "Storage", "Structures", "Technology"]
 const MOVEMENT_IMPULSE = 128
 const WALK_FACTOR = 0.3
 const ITEM_SCENE = preload("res://gui/InventoryItem.tscn")
