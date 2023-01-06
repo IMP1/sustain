@@ -15,12 +15,16 @@
   - [X] Dropping items
   - [X] Trees to give logs
   - [ ] Building things
+    - [ ] Crate (sticks)
+    - [ ] Fireplace (sticks)
+    - [ ] Signpost (sticks)
   - [ ] Storing items?
   - [ ] Bunny AI
     - [ ] Idling
     - [ ] Searching for food when hungry
     - [ ] Fleeing from threats
   - [ ] Trapping/killing bunnies in a snare
+  - [ ] Day / Night cycle? Some kind of cycle might be useful for pacing...
   - [ ] Wolves running around
   - [ ] Wolf AI
     - [ ] Idling

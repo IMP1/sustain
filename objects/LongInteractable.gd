@@ -27,7 +27,7 @@ func _stop_activation() -> void:
 func _input(_event: InputEvent) -> void:
 	if not _active:
 		return
-	if _last_active_player.is_action_just_released("interact"):
+	if _last_active_player._is_action_just_released("interact"):
 		_stop_activation()
 
 func _process(_delta: float) -> void:

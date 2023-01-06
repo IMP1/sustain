@@ -115,6 +115,11 @@ position = Vector2( 364, -118 )
 scale = Vector2( 2.89931, 1 )
 polygon = PoolVector2Array( -72.7761, 4, -59.6695, 4, -59.6695, 34, -72.7761, 34 )
 
+[node name="Obstacle5" type="CollisionPolygon2D" parent="Navigation/NavigationPolygonInstance"]
+position = Vector2( 77, 87 )
+scale = Vector2( 2.89931, 1 )
+polygon = PoolVector2Array( -73.8107, 1, -58.6346, 1, -58.6346, 37, -73.8107, 37 )
+
 [node name="Objects" type="YSort" parent="."]
 
 [node name="Players" type="YSort" parent="Objects"]
@@ -133,6 +138,8 @@ max_yield = 3
 
 [node name="Bush2" parent="Objects/Objects" instance=ExtResource( 1 )]
 position = Vector2( -158, -208 )
+item = ExtResource( 6 )
+max_yield = 3
 
 [node name="Sapling" parent="Objects/Objects" instance=ExtResource( 8 )]
 position = Vector2( 238, -192 )
@@ -141,10 +148,11 @@ item = ExtResource( 9 )
 [node name="Sapling2" parent="Objects/Objects" instance=ExtResource( 8 )]
 position = Vector2( -95, -20 )
 item = ExtResource( 9 )
-amount = 2
+amount = 4
 
 [node name="Tree" parent="Objects/Objects" instance=ExtResource( 12 )]
 position = Vector2( -115, 118 )
+amount = 4
 
 [node name="Camera" parent="." instance=ExtResource( 7 )]
 

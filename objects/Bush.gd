@@ -12,6 +12,7 @@ onready var _rng := RandomNumberGenerator.new()
 func _ready() -> void:
 	if item == null:
 		print("[WARNING] Item not set for bush %s" % self.to_string())
+	_rng.randomize()
 
 func activate(player) -> void:
 	if item == null:
