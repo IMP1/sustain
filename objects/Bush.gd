@@ -14,7 +14,7 @@ func _ready() -> void:
 		print("[WARNING] Item not set for bush %s" % self.to_string())
 	_rng.randomize()
 
-func activate(player) -> void:
+func activate(_player) -> void:
 	if item == null:
 		print("Item has not been set!")
 		return

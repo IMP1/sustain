@@ -4,6 +4,7 @@ signal shift_character(direction)
 signal hunger_changed()
 signal starved()
 signal drop_item(item, amount)
+signal construction_begun(building, location)
 
 export(String) var player_name: String = "Player 1"
 export(int) var device_id: int = 0
@@ -18,14 +19,16 @@ var _hunger: float = 0
 var _velocity: Vector2 = Vector2.ZERO
 var _current_item_index: int = 0
 var _current_build_index: int = 0
-var _current_building_blueprint = null
+var _current_building_blueprint: Building = null
 
 onready var inventory: Inventory = $Inventory as Inventory
 onready var _interaction_area: Area2D = $InteractionReach as Area2D
 onready var _inventory_gui: Control = $InventoryGui as Control
 onready var _build_gui: Control = $BuildGui as Control
-onready var _build_blueprint: Node2D = $BuildBlueprint as Node2D
+onready var _build_blueprint: Sprite = $Pivot/BuildBlueprint as Sprite
+onready var _build_area: Area2D = $Pivot/BuildBlueprint/Area2D as Area2D
 onready var _current_item: InventoryItem = $InventoryGui/CurrentItem as InventoryItem
+onready var _pivot: Node2D = $Pivot as Node2D
 
 func _ready() -> void:
 	_inventory_gui.visible = false
@@ -84,14 +87,17 @@ func _input(event: InputEvent) -> void:
 			else:
 				var object = tabs.get_child(tabs.current_tab).get_child(_current_build_index)
 				if _can_build(object.building):
-					# TODO: Have a blueprint object? Maybe? 
-					#       Or have a blueprint GUI element that the building property is update here
-					_current_building_blueprint = object.building
+					_hold_blueprint(object.building)
 			_refresh_build_gui()
 		if tabs.current_tab > 0 and _is_event_action_pressed(event, "back"):
 			_current_build_index = tabs.current_tab - 1
 			tabs.current_tab = 0
 			_refresh_build_gui()
+	elif _current_building_blueprint:
+		if _is_event_action_pressed(event, "inventory"):
+			_remove_building_blueprint()
+		if _is_event_action_pressed(event, "interact"):
+			_place_building()
 	else:
 		if _is_event_action_pressed(event, "shift_char_down"):
 			emit_signal("shift_character", -1)
@@ -108,7 +114,10 @@ func _handle_movement(delta: float) -> void:
 	_velocity = Vector2.ZERO
 	_velocity.x = _action_strength("move_right") - _action_strength("move_left")
 	_velocity.y = _action_strength("move_down") - _action_strength("move_up")
+	if _velocity == Vector2.ZERO:
+		return
 	_velocity = _velocity.normalized() * MOVEMENT_IMPULSE
+	_pivot.rotation_degrees = stepify(rad2deg(_velocity.angle()), TAU / 8)
 	if _is_action_pressed("toggle_walk"):
 		_velocity *= WALK_FACTOR
 	var collision := move_and_slide(_velocity, Vector2.ZERO)
@@ -122,6 +131,8 @@ func _process_hunger(delta: float) -> void:
 func _process(delta: float) -> void:
 	if not _inventory_gui.visible and not _build_gui.visible:
 		_handle_movement(delta)
+	if _current_building_blueprint:
+		_update_blueprint_placement()
 	_process_hunger(delta)
 
 func _use_item() -> void:
@@ -132,7 +143,8 @@ func _use_item() -> void:
 		return
 	item.use(self)
 	inventory.remove_item(item, 1)
-	# QUESTION: Should inventory close on use?
+	if _current_item_index > 0 and not inventory.has_item(item):
+		_current_item_index -= 1
 	_refresh_inventory_gui()
 
 func _drop_item() -> void:
@@ -146,7 +158,7 @@ func _drop_item() -> void:
 	var destination: Vector2 = position + Vector2(rand_range(-8, 8), 24) # TODO: Use the direction facing
 	emit_signal("drop_item", item, amount, position, height, destination)
 	inventory.remove_item(item, amount)
-	if _current_item_index > 0:
+	if _current_item_index > 0 and not inventory.has_item(item):
 		_current_item_index -= 1
 	_refresh_inventory_gui()
 
@@ -212,9 +224,46 @@ func feed(amount: float) -> void:
 	_hunger = 0 if _hunger < 0 else _hunger
 	emit_signal("hunger_changed")
 
-func _can_build(building) -> bool:
-	print(building)
+func _can_build(building: Building) -> bool:
 	if building == null:
 		return false
-	# TODO: Check required resources, and compare against inventory
+	for i in building.needed_resources.size():
+		var resource: Item = building.needed_resources[i]
+		var amount: int = building.resource_amounts[i]
+		if inventory.item_count(resource) < amount:
+			return false
 	return true
+
+func _hold_blueprint(building: Building) -> void:
+	# TODO: Have a blueprint object? Maybe? 
+	#       Or have a blueprint GUI element that the building property is update here
+	_current_building_blueprint = building
+	_build_blueprint.texture = building.texture
+	_build_blueprint.visible = true
+	_build_gui.visible = false
+	_inventory_gui.visible = false
+	var shape: RectangleShape2D = _build_area.get_node("CollisionShape2D").shape
+	shape.extents = building.texture.get_size() / 2
+
+func _remove_building_blueprint() -> void:
+	_current_building_blueprint = null
+	_build_blueprint.visible = false
+
+func _update_blueprint_placement() -> void:
+	_build_blueprint.rotation_degrees = -_pivot.rotation_degrees
+	var obstacles := _build_area.get_overlapping_bodies()
+	if obstacles.size() > 0:
+		_build_blueprint.modulate = Color("80b13030")
+	else:
+		_build_blueprint.modulate = Color("a079b2ff")
+
+func _place_building() -> void:
+	var obstacles := _build_area.get_overlapping_bodies()
+	if obstacles.size() > 0:
+		return
+	print("Placing building")
+	var building = _current_building_blueprint
+	var location = _build_blueprint.global_position
+	emit_signal("construction_begun", building, location)
+	# TODO: Remove items
+	_remove_building_blueprint()

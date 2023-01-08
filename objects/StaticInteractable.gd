@@ -6,7 +6,7 @@ const ITEM_STACK = preload("res://objects/ItemStack.tscn")
 var _enabled: bool = true
 onready var _game_scene = get_node("/root/Main/CurrentScene/Game")
 
-func activate(player) -> void:
+func activate(_player) -> void:
 	pass
 
 func disable() -> void:
@@ -24,7 +24,7 @@ func enable() -> void:
 func pop_item_stack(item: Resource, amount: int, pos: Vector2, direction: Vector2):
 	var height := Vector2(0, 10)
 	var destination := pos + Vector2(rand_range(-8, 8), 32)
-	var item_stack: ItemStack = _game_scene._add_item_stack(item, amount, pos, height, destination)
+	var _item_stack: ItemStack = _game_scene._add_item_stack(item, amount, pos, height, destination)
 
 func play_sound(stream: AudioStream, pos: Vector2):
 	var audio: AudioStreamPlayer2D = AudioStreamPlayer2D.new()

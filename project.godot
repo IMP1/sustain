@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "Building",
+"language": "GDScript",
+"path": "res://defs/Building.gd"
+}, {
+"base": "Item",
+"class": "CraftedItem",
+"language": "GDScript",
+"path": "res://defs/CraftedItem.gd"
+}, {
 "base": "ItemEffect",
 "class": "Delay",
 "language": "GDScript",
@@ -64,6 +74,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://defs/Parallel.gd"
 }, {
+"base": "ItemEffect",
+"class": "PlaceBuilding",
+"language": "GDScript",
+"path": "res://defs/PlaceBuilding.gd"
+}, {
+"base": "ItemEffect",
+"class": "ScriptedItemEffect",
+"language": "GDScript",
+"path": "res://defs/ScriptedEffect.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -80,6 +100,8 @@ _global_script_classes=[ {
 "path": "res://objects/StaticInteractable.gd"
 } ]
 _global_script_class_icons={
+"Building": "",
+"CraftedItem": "",
 "Delay": "",
 "HungerFactor": "",
 "HungerOffset": "",
@@ -91,6 +113,8 @@ _global_script_class_icons={
 "LongInteractable": "",
 "MultiplayerCamera2D": "",
 "Parallel": "",
+"PlaceBuilding": "",
+"ScriptedItemEffect": "",
 "State": "",
 "StateMachine": "",
 "StaticInteractable": ""
