@@ -15,10 +15,10 @@
   - [X] Dropping items
   - [X] Trees to give logs
   - [ ] Building things
-    - [ ] Crate (sticks)
-    - [ ] Fireplace (sticks)
-    - [ ] Signpost (sticks)
-    - [ ] Snare (??)
+    - [ ] Crate
+    - [ ] Fireplace
+    - [ ] Signpost
+    - [ ] Snare
     - [ ] Water Wheel
     - [ ] Crafting Table
   - [ ] Storing items?
@@ -38,4 +38,38 @@
     - [ ] Fleeing from threats
     - [ ] Attacking back when threatened
   - [ ] Killing wolves?
+
+
+## Items
+
+  - **Berry** (from bushes)
+  - **Feather** (from animals)
+  - **Flint** (from the ground? near rivers?)
+  - **Fur** (from animals)
+  - **Log** (from large tree)
+  - **Meat** (from animals)
+  - **Metal Ore** (from surface veins)
+  - **Stick** (from small trees)
+  - **String** (from reeds? from animals)
+  - **Stone** (from surface stones)
+
+  - **Axe** (crafted from 1 stick + 1 flint + 1 string at a crafting table)
+  - **Charcoal** (crafted from 1 log at a campfire)
+  - **Pegs** (crafted from sticks at a crafting table // requires Flint or Axe // 1 stick -> 4 pegs)
+  - **Plank** (crafted from logs at a crafting table // requires Flint or Axe // 1 log -> 2 planks)
+  - **Metal** (crafted from metal ore at a furnace // uses charcoal // 1 metal ore -> 1 metal)
+  - **Saw** (crafted from 2 metal + 1 stick + 2 pegs at a forge)
+  - **Arrowhead** (crafted from flint at a crafting table // 1 flint -> 3 arrowheads)
+  - **Arrow** (crafted from 1 arrowhead + 1 stick + 1 feather + 1 string at a crafting table)
+
+## Buildings/Crafting
+
+  - **Snare**: Costs string (2) :: A small-enough animal triggering the snare will become trapped and eventually die. Interacting with a "full" snare harvests the creature's materials. Interacting with an "empty" snare reclaims it to be placed elsewhere.
+  - **Fireplace**: Costs sticks (6?) :: Interact with the fire to cook food, create charcoal, etc.
+  - **Signpost**: Costs sticks (2) + plank (1) + string (1) + pegs (4) :: Being near the sign shows its symbol and direction. Interacting with the sign allows setting its symbol and direction.
+  - **Crate**: Costs sticks(4?) :: Used to store a number of the same item.
+  - **Crafting Table**: Costs sticks (4) + logs (2) :: Interact with the table to build/craft materials and buildings requiring tools
+  - **Furnace**: Costs stones (8) + logs(2) :: Interact to smelt metal ores using charcoal
+  - **Forge**: Costs stones (12) + planks (2) :: Interact with the forge to build/craft materials and buildings requiring metals
+  - 
 
