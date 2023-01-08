@@ -23,15 +23,11 @@ func _set_face(face: Texture) -> void:
 		$Face.texture = player_face
 
 func _set_items(items: Dictionary) -> void:
-	print("Setting items")
 	player_inventory = items
 	if _is_ready:
 		for child in _item_list.get_children():
 			_item_list.remove_child(child)
 		for item in items:
-			print("adding item")
-			print(item)
-			print(item.name)
 			var amount = items[item]
 			var icon = ITEM_SCENE.instance()
 			_item_list.add_child(icon)
