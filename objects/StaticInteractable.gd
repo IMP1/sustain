@@ -23,6 +23,7 @@ func enable() -> void:
 
 func pop_item_stack(item: Resource, amount: int, pos: Vector2, direction: Vector2):
 	var height := Vector2(0, 10)
+	# TODO: Use direction
 	var destination := pos + Vector2(rand_range(-8, 8), 32)
 	var _item_stack: ItemStack = _game_scene._add_item_stack(item, amount, pos, height, destination)
 

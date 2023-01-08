@@ -6,7 +6,7 @@ export(Texture) var icon: Texture
 export(Array, Resource) var effects: Array = []
 export(bool) var usable: bool = true
 
-func can_use(user) -> bool:
+func can_use(_user) -> bool:
 	return usable
 
 func use(user) -> void:

@@ -2,6 +2,7 @@ extends Node2D
 
 const PLAYER = preload("res://objects/Player.tscn")
 const CONSTRUCTION = preload("res://objects/BuildingConstruction.tscn")
+const BUILDING = preload("res://objects/BuildingObject.tscn")
 const ITEM_STACK = preload("res://objects/ItemStack.tscn")
 const AVAILABLE_CHARACTERS = ["Pink", "Blue", "White"]
 
@@ -45,7 +46,7 @@ func _add_player(input_device: int) -> void:
 	player.connect("construction_begun", self, "_building_construction_added")
 
 func _shift_player_character(direction: int, player) -> void:
-	print(player)
+	print(player, direction)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -74,13 +75,21 @@ func _add_item_stack(item: Item, amount: int, pos: Vector2, height: Vector2, des
 	return stack
 
 func _building_construction_added(building: Building, location: Vector2) -> void:
-	print("creating construction object")
-	var construction = CONSTRUCTION.instance()
+	var construction: BuildingConstruction = CONSTRUCTION.instance()
 	_object_list.add_child(construction)
 	construction.building = building
 	construction.global_position = location
-	print("adding it to the world")
+	construction.connect("construction_finished", self, "_building_constructed", [construction])
 	var glob_trans = construction.global_transform
 	var polygon = construction._collision.shape
 	_navmesh.add_obstacle_rect(glob_trans, polygon)
-	print("updating navmesh")
+
+func _building_constructed(building: Building, location: Vector2, construction: Node) -> void:
+	# TODO: Add some juice! Some particles + a sound.
+	var building_obj: BuildingObject = BUILDING.instance()
+	_object_list.add_child(building_obj)
+	building_obj.building = building
+	building_obj.global_position = location
+	# ASSUMPTION: Assuming that the navmesh was updated with the construction
+	if construction:
+		_object_list.remove_child(construction)

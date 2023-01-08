@@ -110,7 +110,7 @@ func _input(event: InputEvent) -> void:
 		if _is_event_action_pressed(event, "inventory"):
 			_inventory_gui.visible = true
 
-func _handle_movement(delta: float) -> void:
+func _handle_movement(_delta: float) -> void:
 	_velocity = Vector2.ZERO
 	_velocity.x = _action_strength("move_right") - _action_strength("move_left")
 	_velocity.y = _action_strength("move_down") - _action_strength("move_up")
@@ -120,7 +120,7 @@ func _handle_movement(delta: float) -> void:
 	_pivot.rotation_degrees = stepify(rad2deg(_velocity.angle()), TAU / 8)
 	if _is_action_pressed("toggle_walk"):
 		_velocity *= WALK_FACTOR
-	var collision := move_and_slide(_velocity, Vector2.ZERO)
+	move_and_slide(_velocity, Vector2.ZERO)
 
 func _process_hunger(delta: float) -> void:
 	_hunger += hunger_rate * delta
@@ -189,7 +189,7 @@ func _nearest_interactable(list: Array) -> StaticInteractable:
 			distance = dist
 	return nearest
 
-func _item_added(item: Resource, amount: int) -> void:
+func _item_added(_item: Resource, _amount: int) -> void:
 	_refresh_inventory_gui()
 
 func _refresh_inventory_gui() -> void:
@@ -221,7 +221,7 @@ func _refresh_build_gui() -> void:
 
 func feed(amount: float) -> void:
 	_hunger -= amount
-	_hunger = 0 if _hunger < 0 else _hunger
+	_hunger = 0.0 if _hunger < 0 else _hunger
 	emit_signal("hunger_changed")
 
 func _can_build(building: Building) -> bool:
@@ -235,8 +235,6 @@ func _can_build(building: Building) -> bool:
 	return true
 
 func _hold_blueprint(building: Building) -> void:
-	# TODO: Have a blueprint object? Maybe? 
-	#       Or have a blueprint GUI element that the building property is update here
 	_current_building_blueprint = building
 	_build_blueprint.texture = building.texture
 	_build_blueprint.visible = true
@@ -266,4 +264,9 @@ func _place_building() -> void:
 	var location = _build_blueprint.global_position
 	emit_signal("construction_begun", building, location)
 	# TODO: Remove items
+	for i in building.needed_resources.size():
+		var item: Item = building.needed_resources[i]
+		var amount: int = building.resource_amounts[i]
+		inventory.remove_item(item, amount)
+	_refresh_inventory_gui()
 	_remove_building_blueprint()

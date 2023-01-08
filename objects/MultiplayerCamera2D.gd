@@ -13,7 +13,7 @@ func add_player(path: NodePath) -> void:
 	players.append(path)
 	# TODO: Tween to incorporate new player
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var midpoint := Vector2.ZERO
 	var count := 0
 	var bounds_shifted := false

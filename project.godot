@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://defs/Building.gd"
 }, {
+"base": "LongInteractable",
+"class": "BuildingConstruction",
+"language": "GDScript",
+"path": "res://objects/BuildingConstruction.gd"
+}, {
+"base": "StaticInteractable",
+"class": "BuildingObject",
+"language": "GDScript",
+"path": "res://objects/BuildingObject.gd"
+}, {
 "base": "Item",
 "class": "CraftedItem",
 "language": "GDScript",
@@ -101,6 +111,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Building": "",
+"BuildingConstruction": "",
+"BuildingObject": "",
 "CraftedItem": "",
 "Delay": "",
 "HungerFactor": "",
@@ -125,6 +137,10 @@ _global_script_class_icons={
 config/name="Sustain"
 run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [gui]
 
