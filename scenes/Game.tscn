@@ -5,10 +5,10 @@
 [ext_resource path="res://assets/mystic_woods_free_2.1/sprites/tilesets/grass.png" type="Texture" id=3]
 [ext_resource path="res://assets/mystic_woods_free_2.1/sprites/tilesets/fences.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=5]
-[ext_resource path="res://data/items/Berry.tres" type="Resource" id=6]
+[ext_resource path="res://data/raw_items/Berry.tres" type="Resource" id=6]
 [ext_resource path="res://objects/MultiplayerCamera2D.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/Sapling.tscn" type="PackedScene" id=8]
-[ext_resource path="res://data/items/Stick.tres" type="Resource" id=9]
+[ext_resource path="res://data/raw_items/Stick.tres" type="Resource" id=9]
 [ext_resource path="res://objects/Rabbit.tscn" type="PackedScene" id=10]
 [ext_resource path="res://util/StaticObstacles.gd" type="Script" id=11]
 [ext_resource path="res://objects/Tree.tscn" type="PackedScene" id=12]
@@ -93,29 +93,29 @@ tile_data = PoolIntArray( -1376291, 2, 0, -1376290, 2, 0, -1376289, 2, 0, -13762
 
 [node name="Navigation" type="Node2D" parent="."]
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation"]
+[node name="NavPoly" type="NavigationPolygonInstance" parent="Navigation"]
 navpoly = SubResource( 2 )
 script = ExtResource( 11 )
 
-[node name="Obstacle1" type="CollisionPolygon2D" parent="Navigation/NavigationPolygonInstance"]
+[node name="Obstacle1" type="CollisionPolygon2D" parent="Navigation/NavPoly"]
 polygon = PoolVector2Array( -177, -220, -139, -220, -139, -190, -177, -190 )
 
-[node name="Obstacle2" type="CollisionPolygon2D" parent="Navigation/NavigationPolygonInstance"]
+[node name="Obstacle2" type="CollisionPolygon2D" parent="Navigation/NavPoly"]
 position = Vector2( 102, -49 )
 scale = Vector2( 2.89931, 1 )
 polygon = PoolVector2Array( -72.7761, 12, -63.1186, 12, -63.1186, 34, -72.7761, 34 )
 
-[node name="Obstacle3" type="CollisionPolygon2D" parent="Navigation/NavigationPolygonInstance"]
+[node name="Obstacle3" type="CollisionPolygon2D" parent="Navigation/NavPoly"]
 position = Vector2( 435, -221 )
 scale = Vector2( 2.89931, 1 )
 polygon = PoolVector2Array( -72.7761, 12, -63.1186, 12, -63.1186, 34, -72.7761, 34 )
 
-[node name="Obstacle4" type="CollisionPolygon2D" parent="Navigation/NavigationPolygonInstance"]
+[node name="Obstacle4" type="CollisionPolygon2D" parent="Navigation/NavPoly"]
 position = Vector2( 364, -118 )
 scale = Vector2( 2.89931, 1 )
 polygon = PoolVector2Array( -72.7761, 4, -59.6695, 4, -59.6695, 34, -72.7761, 34 )
 
-[node name="Obstacle5" type="CollisionPolygon2D" parent="Navigation/NavigationPolygonInstance"]
+[node name="Obstacle5" type="CollisionPolygon2D" parent="Navigation/NavPoly"]
 position = Vector2( 77, 87 )
 scale = Vector2( 2.89931, 1 )
 polygon = PoolVector2Array( -73.8107, 1, -58.6346, 1, -58.6346, 37, -73.8107, 37 )

@@ -1,6 +1,7 @@
 extends Node2D
 
 const PLAYER = preload("res://objects/Player.tscn")
+const CONSTRUCTION = preload("res://objects/BuildingConstruction.tscn")
 const ITEM_STACK = preload("res://objects/ItemStack.tscn")
 const AVAILABLE_CHARACTERS = ["Pink", "Blue", "White"]
 
@@ -10,6 +11,7 @@ onready var _players: Node2D = $Objects/Players as Node2D
 onready var _camera: MultiplayerCamera2D = $Camera as MultiplayerCamera2D
 onready var _gui_layer: CanvasLayer = $HUDs as CanvasLayer
 onready var _object_list: Node2D = $Objects/Objects as Node2D
+onready var _navmesh: NavigationPolygonInstance = $Navigation/NavPoly as NavigationPolygonInstance
 
 func _add_player(input_device: int) -> void:
 	_used_devices.append(input_device)
@@ -17,8 +19,6 @@ func _add_player(input_device: int) -> void:
 	_players.add_child(player)
 	player.device_id = input_device
 	player.position += Vector2(50, 50)
-	player.connect("shift_character", self, "_shift_player_character", [player])
-	player.connect("starved", self, "_player_starved", [player])
 	_camera.add_player(player.get_path())
 	var current_player_number: int = _players.get_child_count()
 	var hud_path: String = ""
@@ -40,6 +40,9 @@ func _add_player(input_device: int) -> void:
 	player.inventory.connect("item_added", self, "_refresh_player_inventory", [player, hud])
 	player.inventory.connect("item_removed", self, "_refresh_player_inventory", [player, hud])
 	player.connect("drop_item", self, "_add_item_stack")
+	player.connect("shift_character", self, "_shift_player_character", [player])
+	player.connect("starved", self, "_player_starved", [player])
+	player.connect("construction_begun", self, "_building_construction_added")
 
 func _shift_player_character(direction: int, player) -> void:
 	print(player)
@@ -69,3 +72,15 @@ func _add_item_stack(item: Item, amount: int, pos: Vector2, height: Vector2, des
 	stack.destination = destination
 	stack.pop()
 	return stack
+
+func _building_construction_added(building: Building, location: Vector2) -> void:
+	print("creating construction object")
+	var construction = CONSTRUCTION.instance()
+	_object_list.add_child(construction)
+	construction.building = building
+	construction.global_position = location
+	print("adding it to the world")
+	var glob_trans = construction.global_transform
+	var polygon = construction._collision.shape
+	_navmesh.add_obstacle_rect(glob_trans, polygon)
+	print("updating navmesh")
