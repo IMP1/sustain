@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=10 format=2]
+
+[ext_resource path="res://defs/Delay.gd" type="Script" id=1]
+[ext_resource path="res://defs/HungerOffset.gd" type="Script" id=2]
+[ext_resource path="res://defs/HungerFactor.gd" type="Script" id=3]
+[ext_resource path="res://defs/Item.gd" type="Script" id=4]
+[ext_resource path="res://assets/crafting_materials/resources_basic.png" type="Texture" id=5]
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 2 )
+satiation = 40.0
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+duration = 4.0
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 3 )
+rate_offset = 0.0
+duration = 3.0
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 144, 24, 24 )
+
+[resource]
+script = ExtResource( 4 )
+name = "Berry"
+icon = SubResource( 1 )
+effects = [ SubResource( 5 ), SubResource( 3 ), SubResource( 4 ) ]
+usable = true

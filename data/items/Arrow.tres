@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://defs/CraftedItem.gd" type="Script" id=1]
+[ext_resource path="res://data/raw_items/String.tres" type="Resource" id=2]
+[ext_resource path="res://data/raw_items/Feather.tres" type="Resource" id=3]
+[ext_resource path="res://data/raw_items/Stick.tres" type="Resource" id=4]
+[ext_resource path="res://data/items/Arrowhead.tres" type="Resource" id=5]
+[ext_resource path="res://assets/crafting_materials/resources_basic.png" type="Texture" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 264, 24, 24 )
+
+[resource]
+script = ExtResource( 1 )
+name = "Arrow"
+icon = SubResource( 1 )
+effects = [  ]
+usable = false
+construction_time = 1.0
+constuction_yield = 1
+needed_resources = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ]
+resource_amounts = [ 1, 1, 1, 1 ]
+needed_items = [  ]

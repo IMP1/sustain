@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://defs/CraftedItem.gd" type="Script" id=1]
+[ext_resource path="res://data/raw_items/Flint.tres" type="Resource" id=2]
+[ext_resource path="res://assets/crafting_materials/resources_basic.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 168, 24, 24 )
+
+[resource]
+script = ExtResource( 1 )
+name = "Arrowhead"
+icon = SubResource( 1 )
+effects = [  ]
+usable = false
+construction_time = 1.0
+constuction_yield = 3
+needed_resources = [ ExtResource( 2 ) ]
+resource_amounts = [ 1 ]
+needed_items = [  ]
