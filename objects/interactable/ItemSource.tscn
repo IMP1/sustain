@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://objects/interactable/LongInteractable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/interactable/ItemSource.gd" type="Script" id=2]
+
+[node name="ItemSource" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+item = null
+min_yield = 1
+max_yield = 1
+amount = 1
+
+[node name="Sprites" type="Node2D" parent="." index="1"]
+
+[node name="Base" type="Sprite" parent="Sprites" index="0"]
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="." index="2"]

@@ -6,8 +6,8 @@ export(float) var interaction_duration: float = 1.0
 var _last_active_player = null
 var _active: bool = false
 
-onready var _bar: ProgressBar = $ProgressBar as ProgressBar
-onready var _tween: Tween = $ProgressBar/Tween as Tween
+onready var _bar: ProgressBar = $Info/ProgressBar as ProgressBar
+onready var _tween: Tween = $Info/ProgressBar/Tween as Tween
 
 func activate(player) -> void:
 	_last_active_player = player

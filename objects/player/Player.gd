@@ -237,7 +237,23 @@ func _can_build(building: Building) -> bool:
 	return true
 
 func _can_craft(item: CraftedItem) -> bool:
-	# TODO: Impleement this check
+	if item == null:
+		return false
+	for i in item.needed_resources.size():
+		var resource: Item = item.needed_resources[i]
+		var amount: int = item.resource_amounts[i]
+		if inventory.item_count(resource) < amount:
+			return false
+	if item.needed_items.size() > 0:
+		for item_set in item.needed_items:
+			var all_in_set: bool = true
+			for needed_item in item_set:
+				if not inventory.has_item(needed_item):
+					all_in_set = false
+					break
+			if all_in_set:
+				return true
+		return false
 	return true
 
 func _hold_blueprint(building: Building) -> void:

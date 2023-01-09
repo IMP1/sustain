@@ -29,7 +29,7 @@ func activate(player) -> void:
 func _player_can_build(player) -> bool:
 	if building.needed_items.size() == 0:
 		return true
-	for item_set in building.needed_item:
+	for item_set in building.needed_items:
 		var all_in_set: bool = true
 		for item in item_set:
 			if not player.inventory.has_item(item):
@@ -37,7 +37,7 @@ func _player_can_build(player) -> bool:
 				break
 		if all_in_set:
 			return true
-	return true
+	return false
 
 func _activation_successful() -> void:
 	print("Activated!")

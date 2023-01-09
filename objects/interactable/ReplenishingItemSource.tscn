@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://objects/interactable/ItemSource.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/interactable/ReplenishingItemSource.gd" type="Script" id=2]
+
+[node name="ReplenishingItemSource" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+min_growth_time = 10.0
+max_growth_time = 10.0
+max_amount = 1
+
+[node name="Timer" type="Timer" parent="." index="2"]
+
+[connection signal="timeout" from="Timer" to="." method="replenish"]
