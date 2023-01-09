@@ -1,9 +1,9 @@
 extends Node2D
 
-const PLAYER = preload("res://objects/Player.tscn")
-const CONSTRUCTION = preload("res://objects/BuildingConstruction.tscn")
-const BUILDING = preload("res://objects/BuildingObject.tscn")
-const ITEM_STACK = preload("res://objects/ItemStack.tscn")
+const PLAYER = preload("res://objects/player/Player.tscn")
+const CONSTRUCTION = preload("res://objects/interactable/BuildingConstruction.tscn")
+const BUILDING = preload("res://objects/interactable/BuildingObject.tscn")
+const ITEM_STACK = preload("res://objects/interactable/ItemStack.tscn")
 const AVAILABLE_CHARACTERS = ["Pink", "Blue", "White"]
 
 var _used_devices = []
