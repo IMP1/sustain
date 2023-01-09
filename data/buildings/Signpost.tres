@@ -1,8 +1,11 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://defs/Building.gd" type="Script" id=1]
 [ext_resource path="res://data/raw_items/Stick.tres" type="Resource" id=2]
 [ext_resource path="res://assets/mystic_woods_free_2.1/sprites/objects/objects.png" type="Texture" id=3]
+[ext_resource path="res://data/items/Plank.tres" type="Resource" id=4]
+[ext_resource path="res://data/items/Peg.tres" type="Resource" id=5]
+[ext_resource path="res://data/raw_items/String.tres" type="Resource" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -11,8 +14,11 @@ region = Rect2( 0, 0, 16, 16 )
 [resource]
 script = ExtResource( 1 )
 name = "Signpost"
-texture = SubResource( 1 )
+effects = [  ]
+usable = false
 construction_time = 1.0
-needed_resources = [ ExtResource( 2 ) ]
-resource_amounts = [ 4 ]
+constuction_yield = 1
+needed_resources = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ) ]
+resource_amounts = [ 2, 1, 1, 4 ]
 needed_items = [  ]
+texture = SubResource( 1 )

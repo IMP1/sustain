@@ -1,16 +1,18 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://defs/CraftedItem.gd" type="Script" id=1]
 [ext_resource path="res://assets/crafting_materials/resources_basic.png" type="Texture" id=2]
-[ext_resource path="res://data/raw_items/MetalOre.tres" type="Resource" id=3]
+[ext_resource path="res://data/raw_items/Stick.tres" type="Resource" id=3]
+[ext_resource path="res://data/raw_items/Flint.tres" type="Resource" id=4]
+[ext_resource path="res://data/items/Axe.tres" type="Resource" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
-region = Rect2( 48, 120, 24, 24 )
+region = Rect2( 120, 264, 24, 24 )
 
 [resource]
 script = ExtResource( 1 )
-name = "Metal"
+name = "Mallet"
 icon = SubResource( 1 )
 effects = [  ]
 usable = false
@@ -18,4 +20,4 @@ construction_time = 1.0
 constuction_yield = 1
 needed_resources = [ ExtResource( 3 ) ]
 resource_amounts = [ 1 ]
-needed_items = [  ]
+needed_items = [ [ ExtResource( 4 ) ], [ ExtResource( 5 ) ] ]

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://defs/Building.gd" type="Script" id=1]
+[ext_resource path="res://assets/mystic_woods_free_2.1/sprites/objects/objects.png" type="Texture" id=2]
+[ext_resource path="res://data/raw_items/Stick.tres" type="Resource" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 160, 128, 32, 16 )
+
+[resource]
+script = ExtResource( 1 )
+name = "Campfire"
+effects = [  ]
+usable = false
+construction_time = 1.0
+constuction_yield = 1
+needed_resources = [ ExtResource( 3 ) ]
+resource_amounts = [ 6 ]
+needed_items = [  ]
+texture = SubResource( 1 )

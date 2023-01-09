@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Resource",
+"base": "CraftedItem",
 "class": "Building",
 "language": "GDScript",
 "path": "res://defs/Building.gd"
@@ -17,12 +17,12 @@ _global_script_classes=[ {
 "base": "LongInteractable",
 "class": "BuildingConstruction",
 "language": "GDScript",
-"path": "res://objects/BuildingConstruction.gd"
+"path": "res://objects/interactable/BuildingConstruction.gd"
 }, {
 "base": "StaticInteractable",
 "class": "BuildingObject",
 "language": "GDScript",
-"path": "res://objects/BuildingObject.gd"
+"path": "res://objects/interactable/BuildingObject.gd"
 }, {
 "base": "Item",
 "class": "CraftedItem",
@@ -47,7 +47,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Inventory",
 "language": "GDScript",
-"path": "res://objects/Inventory.gd"
+"path": "res://objects/player/Inventory.gd"
 }, {
 "base": "TextureRect",
 "class": "InventoryItem",
@@ -67,17 +67,17 @@ _global_script_classes=[ {
 "base": "StaticBody2D",
 "class": "ItemStack",
 "language": "GDScript",
-"path": "res://objects/ItemStack.gd"
+"path": "res://objects/interactable/ItemStack.gd"
 }, {
 "base": "StaticInteractable",
 "class": "LongInteractable",
 "language": "GDScript",
-"path": "res://objects/LongInteractable.gd"
+"path": "res://objects/interactable/LongInteractable.gd"
 }, {
 "base": "Camera2D",
 "class": "MultiplayerCamera2D",
 "language": "GDScript",
-"path": "res://objects/MultiplayerCamera2D.gd"
+"path": "res://objects/player/MultiplayerCamera2D.gd"
 }, {
 "base": "ItemEffect",
 "class": "Parallel",
@@ -107,7 +107,7 @@ _global_script_classes=[ {
 "base": "StaticBody2D",
 "class": "StaticInteractable",
 "language": "GDScript",
-"path": "res://objects/StaticInteractable.gd"
+"path": "res://objects/interactable/StaticInteractable.gd"
 } ]
 _global_script_class_icons={
 "Building": "",
@@ -299,6 +299,7 @@ toggle_drop_all_1={
 2d_physics/layer_7="Interactable"
 2d_physics/layer_8="Blueprint"
 2d_physics/layer_9="Animal"
+2d_physics/layer_10="Water"
 
 [physics]
 

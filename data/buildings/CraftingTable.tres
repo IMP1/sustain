@@ -12,8 +12,11 @@ region = Rect2( 160, 0, 32, 16 )
 [resource]
 script = ExtResource( 1 )
 name = "CraftingTable"
-texture = SubResource( 1 )
+effects = [  ]
+usable = false
 construction_time = 4.0
+constuction_yield = 1
 needed_resources = [ ExtResource( 3 ), ExtResource( 2 ) ]
 resource_amounts = [ 4, 2 ]
 needed_items = [  ]
+texture = SubResource( 1 )
