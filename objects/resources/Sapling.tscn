@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/mystic_woods_free_2.1/sprites/objects/objects.png" type="Texture" id=2]
-[ext_resource path="res://objects/Sapling.gd" type="Script" id=3]
+[ext_resource path="res://objects/resources/Sapling.gd" type="Script" id=3]
 [ext_resource path="res://assets/audio/sounds/pine-tree-branch-snap-breaking-27032.mp3" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]

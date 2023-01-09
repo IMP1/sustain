@@ -1,7 +1,7 @@
 extends StaticBody2D
 class_name StaticInteractable
 
-const ITEM_STACK = preload("res://objects/ItemStack.tscn")
+const ITEM_STACK = preload("res://objects/interactable/ItemStack.tscn")
 
 var _enabled: bool = true
 onready var _game_scene = get_node("/root/Main/CurrentScene/Game")

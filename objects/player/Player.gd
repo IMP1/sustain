@@ -24,7 +24,7 @@ var _current_building_blueprint: Building = null
 onready var inventory: Inventory = $Inventory as Inventory
 onready var _interaction_area: Area2D = $InteractionReach as Area2D
 onready var _inventory_gui: Control = $InventoryGui as Control
-onready var _build_gui: Control = $BuildGui as Control
+onready var _craft_gui: Control = $CraftGui as Control
 onready var _build_blueprint: Sprite = $Pivot/BuildBlueprint as Sprite
 onready var _build_area: Area2D = $Pivot/BuildBlueprint/Area2D as Area2D
 onready var _current_item: InventoryItem = $InventoryGui/CurrentItem as InventoryItem
@@ -32,7 +32,7 @@ onready var _pivot: Node2D = $Pivot as Node2D
 
 func _ready() -> void:
 	_inventory_gui.visible = false
-	_build_gui.visible = false
+	_craft_gui.visible = false
 	_build_blueprint.visible = false
 
 func _is_action_pressed(action_name: String) -> bool:
@@ -64,22 +64,22 @@ func _input(event: InputEvent) -> void:
 			_use_item()
 		if any_items and _is_event_action_pressed(event, "drop"):
 			_drop_item()
-	elif _build_gui.visible:
+	elif _craft_gui.visible:
 		if _is_event_action_pressed(event, "inventory"):
-			_build_gui.visible = false
-		var tabs: TabContainer = $BuildGui/Tabs as TabContainer
+			_craft_gui.visible = false
+		var tabs: TabContainer = _craft_gui.get_node("Tabs") as TabContainer
 		var option_count: int = tabs.get_child(tabs.current_tab).get_child_count()
 		if _is_event_action_pressed(event, "build"):
-			_build_gui.visible = false
+			_craft_gui.visible = false
 		if _is_event_action_pressed(event, "move_left"):
 			_current_build_index -= 1
 			if _current_build_index == -1:
 				_current_build_index = option_count - 1
-			_refresh_build_gui()
+			_refresh_craft_gui()
 		if _is_event_action_pressed(event, "move_right"):
 			_current_build_index += 1
 			_current_build_index %= option_count
-			_refresh_build_gui()
+			_refresh_craft_gui()
 		if _is_event_action_pressed(event, "interact"):
 			if tabs.current_tab == 0:
 				tabs.current_tab = _current_build_index + 1
@@ -88,11 +88,13 @@ func _input(event: InputEvent) -> void:
 				var object = tabs.get_child(tabs.current_tab).get_child(_current_build_index)
 				if _can_build(object.building):
 					_hold_blueprint(object.building)
-			_refresh_build_gui()
+				elif _can_craft(object.building):
+					print("Crafting, not building")
+			_refresh_craft_gui()
 		if tabs.current_tab > 0 and _is_event_action_pressed(event, "back"):
 			_current_build_index = tabs.current_tab - 1
 			tabs.current_tab = 0
-			_refresh_build_gui()
+			_refresh_craft_gui()
 	elif _current_building_blueprint:
 		if _is_event_action_pressed(event, "inventory"):
 			_remove_building_blueprint()
@@ -106,7 +108,7 @@ func _input(event: InputEvent) -> void:
 		if _is_event_action_pressed(event, "interact"):
 			_interact()
 		if _is_event_action_pressed(event, "build"):
-			_build_gui.visible = true
+			_craft_gui.visible = true
 		if _is_event_action_pressed(event, "inventory"):
 			_inventory_gui.visible = true
 
@@ -129,7 +131,7 @@ func _process_hunger(delta: float) -> void:
 		emit_signal("starved")
 
 func _process(delta: float) -> void:
-	if not _inventory_gui.visible and not _build_gui.visible:
+	if not _inventory_gui.visible and not _craft_gui.visible:
 		_handle_movement(delta)
 	if _current_building_blueprint:
 		_update_blueprint_placement()
@@ -209,14 +211,14 @@ func _refresh_inventory_gui() -> void:
 	if item:
 		label.text = item.name
 
-func _refresh_build_gui() -> void:
-	var selection: Panel = $BuildGui/Selection as Panel
-	var tabs: TabContainer = $BuildGui/Tabs as TabContainer
+func _refresh_craft_gui() -> void:
+	var selection: Panel = $CraftGui/Selection as Panel
+	var tabs: TabContainer = $CraftGui/Tabs as TabContainer
 	var option_count: int = tabs.get_child(tabs.current_tab).get_child_count()
 	var width: int = option_count * 24 + (option_count - 1) * 4
 	var ox: int = -(width / 2)
 	selection.rect_position.x = ox + (_current_build_index * (24+4))
-	var label: Label = $BuildGui/Info as Label
+	var label: Label = $CraftGui/Info as Label
 	label.text = tabs.get_child(tabs.current_tab).get_child(_current_build_index).name
 
 func feed(amount: float) -> void:
@@ -234,11 +236,15 @@ func _can_build(building: Building) -> bool:
 			return false
 	return true
 
+func _can_craft(item: CraftedItem) -> bool:
+	# TODO: Impleement this check
+	return true
+
 func _hold_blueprint(building: Building) -> void:
 	_current_building_blueprint = building
 	_build_blueprint.texture = building.texture
 	_build_blueprint.visible = true
-	_build_gui.visible = false
+	_craft_gui.visible = false
 	_inventory_gui.visible = false
 	var shape: RectangleShape2D = _build_area.get_node("CollisionShape2D").shape
 	shape.extents = building.texture.get_size() / 2
