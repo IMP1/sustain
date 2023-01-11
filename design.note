@@ -11,33 +11,49 @@
   - [X] Character using items
   - [X] Hunger meter depletion
   - [X] Satisfying hunger need
-  - [X] Bunnies running around
   - [X] Dropping items
-  - [X] Trees to give logs
+  - [ ] Resources sources
+      - [X] Bushes to give berries
+      - [ ] Stones to give flint
+      - [ ] Trees to give logs
+      - [ ] Veins to give ore
+      - [ ] Saplings to give sticks
+      - [ ] Reeds to give string
+      - [ ] Stones to give stone
+      - [ ] Random instances of item_stacks
+          - [ ] Feathers
+          - [ ] Flint
   - [ ] Building things
-    - [ ] Crate
-    - [ ] Fireplace
-    - [ ] Signpost
-    - [ ] Snare
-    - [ ] Water Wheel
-    - [X] Crafting Table
+      - [ ] Crate
+      - [ ] Fireplace
+      - [ ] Signpost
+      - [ ] Snare
+      - [ ] Water Wheel
+      - [X] Crafting Table
   - [ ] Storing items?
-  - [ ] Bunny AI
-    - [ ] Idling
-    - [ ] Searching for food when hungry
-    - [ ] Fleeing from threats
-  - [ ] Trapping/killing bunnies in a snare
-  - [ ] Day / Night cycle? Some kind of cycle might be useful for pacing...
+  - [X] Bunnies running around
+  - [ ] Birds running(?) around
   - [ ] Wolves running around
+  - [ ] Animals to give resources
+      - [ ] Wolves to give fur + meat + string
+      - [ ] Birds to give feathers
+  - [ ] Bunny AI
+      - [ ] Idling
+      - [ ] Searching for food when hungry
+      - [ ] Fleeing from threats
+  - [ ] Trapping/killing bunnies/birds in a snare
+  - [ ] Day / Night cycle? Some kind of cycle might be useful for pacing...
   - [ ] Wolf AI
-    - [ ] Idling
-    - [ ] Searching for food when hungry
-    - [ ] Hunting rabbits
-    - [ ] Killing + eating rabbits
-    - [ ] Stealing food from storage
-    - [ ] Fleeing from threats
-    - [ ] Attacking back when threatened
+      - [ ] Idling
+      - [ ] Searching for food when hungry
+      - [ ] Hunting rabbits
+      - [ ] Killing + eating rabbits
+      - [ ] Stealing food from storage
+      - [ ] Fleeing from threats
+      - [ ] Attacking back when threatened
   - [ ] Killing wolves?
+  - [ ] Waterways
+      - [ ] Water movement ??? How will this be done? A normal-map kinda thing with water motion at each pixel? This normal-map generated from a path?
 
 
 ## Items
