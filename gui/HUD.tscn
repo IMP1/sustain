@@ -96,12 +96,13 @@ custom_styles/fg = SubResource( 5 )
 custom_styles/bg = SubResource( 4 )
 percent_visible = false
 
-[node name="Inventory" type="ScrollContainer" parent="."]
-margin_left = 6.0
-margin_top = 114.0
-margin_right = 308.0
-margin_bottom = 142.0
-scroll_horizontal_enabled = false
-scroll_vertical_enabled = false
+[node name="Inventory" type="Control" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = -80.0
 
-[node name="Items" type="HBoxContainer" parent="Inventory"]
+[node name="Items" type="HFlowContainer" parent="Inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
