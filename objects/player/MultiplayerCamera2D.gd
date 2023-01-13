@@ -14,6 +14,12 @@ func add_player(path: NodePath) -> void:
 	# TODO: Tween to incorporate new player
 
 func _process(_delta: float) -> void:
+	if players.size() == 0:
+		return
+#	if players.size() == 1:
+#		var player: Node2D = get_node_or_null(players[0])
+#		position = player.position
+#		return
 	var midpoint := Vector2.ZERO
 	var count := 0
 	var bounds_shifted := false
@@ -27,5 +33,5 @@ func _process(_delta: float) -> void:
 				bounds_shifted = true
 	midpoint /= count
 	if bounds_shifted:
-		pass
+		position = midpoint
 	# TODO: Use midpoint and bounds somehow.
